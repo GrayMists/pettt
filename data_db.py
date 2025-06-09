@@ -47,10 +47,7 @@ def fetch_sales_data():
 def show_data_db():
     try:
         df = fetch_sales_data()
-        # Діагностика
-        st.write("Розмір DataFrame:", df.shape)
-        st.write("Стовпці:", df.columns.tolist())
-        st.write(df.head())
+
         unique_regions = df['region'].unique()
         region_tabs = st.tabs(list(unique_regions))
 
