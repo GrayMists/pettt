@@ -6,7 +6,6 @@ import numpy as np
 
 url = st.secrets["SUPABASE_URL"]
 key = st.secrets["SUPABASE_KEY"]
-
 TABLE_NAME = "sales_data"
 
 headers = {

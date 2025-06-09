@@ -14,7 +14,7 @@ TABLE_NAME = "sales_data"
 
 headers = {
     "apikey": key,
-    "Authorization": f"Bearer {url}",
+    "Authorization": f"Bearer {key}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
