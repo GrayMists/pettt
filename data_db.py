@@ -4,13 +4,14 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-SUPABASE_URL = "https://vimswywxzejgyvxjzuvf.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpbXN3eXd4emVqZ3l2eGp6dXZmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTg1OTk0NiwiZXhwIjoyMDYxNDM1OTQ2fQ.31GnQn8Bf_tcM-JXIdP4fk8Hnf3wMEKrhofd4Vy3EiY"
+url = st.secrets["SUPABASE_URL"]
+key = st.secrets["SUPABASE_KEY"]
+
 TABLE_NAME = "sales_data"
 
 headers = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": key,
+    "Authorization": f"Bearer {key}",
 }
 
 @st.cache_data
@@ -21,7 +22,7 @@ def fetch_sales_data():
 
     while True:
         response = requests.get(
-            f"{SUPABASE_URL}/rest/v1/{TABLE_NAME}",
+            f"{url}/rest/v1/{TABLE_NAME}",
             headers=headers,
             params={
                 "select": "*",

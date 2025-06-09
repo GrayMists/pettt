@@ -3,6 +3,9 @@ import pandas as pd
 import requests
 import json
 
+url = st.secrets["SUPABASE_URL"]
+key = st.secrets["SUPABASE_KEY"]
+
 def show_data():
     st.title("Завантаження CSV")
     uploaded_file = st.file_uploader("Завантаж CSV файл", type="csv")
@@ -18,13 +21,11 @@ def show_data():
 
             # Кнопка для завантаження в Supabase
             if st.button("Завантажити в Supabase"):
-                SUPABASE_URL = "https://vimswywxzejgyvxjzuvf.supabase.co"
-                SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpbXN3eXd4emVqZ3l2eGp6dXZmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTg1OTk0NiwiZXhwIjoyMDYxNDM1OTQ2fQ.31GnQn8Bf_tcM-JXIdP4fk8Hnf3wMEKrhofd4Vy3EiY"
                 TABLE_NAME = "sales_data"
 
                 headers = {
-                    "apikey": SUPABASE_KEY,
-                    "Authorization": f"Bearer {SUPABASE_KEY}",
+                    "apikey": key,
+                    "Authorization": f"Bearer {key}",
                     "Content-Type": "application/json",
                     "Prefer": "return=representation"
                 }
@@ -35,7 +36,7 @@ def show_data():
                 for i in range(0, len(data), chunk_size):
                     chunk = data[i:i + chunk_size]
                     response = requests.post(
-                        f"{SUPABASE_URL}/rest/v1/{TABLE_NAME}",
+                        f"{url}/rest/v1/{TABLE_NAME}",
                         headers=headers,
                         data=json.dumps(chunk)
                     )
