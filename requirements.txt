@@ -3,3 +3,4 @@ pandas
 streamlit-option-menu
 openpyxl
 supabase
+matplotlib
